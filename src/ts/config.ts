@@ -24,6 +24,7 @@ export const CONFIG = {
         BATTLE_SCENE_BACKGROUND: "battle_scene_background",
         MAIN_MAP: "main_map",
         MAP_BACKGROUND: "map_background",
+        EX_TEXT: "ex_text",
         REMAIN_CARDS: "remain_cards"
     },
     AUDIO: {

@@ -18,6 +18,7 @@ export class MapScene extends Phaser.Scene
     {
         this.load.image(CONFIG.IMAGE.MAIN_MAP, "assets/images/mapScene/MainMap.png");
         this.load.image(CONFIG.IMAGE.MAP_BACKGROUND, "assets/images/mapScene/MapBackground.png");
+        this.load.image(CONFIG.IMAGE.EX_TEXT, "assets/images/mapScene/ExText.png")
     }
 
     create(): void
@@ -31,19 +32,24 @@ export class MapScene extends Phaser.Scene
         /** 상단 매뉴 */
         const topMenu = new TopMenu(this, 0, 0).setDepth(2);
 
+        /** 설명 텍스트 */
+        const exText = this.add.image(100, this.game.canvas.height - 100, "ex_text").setDepth(2);
+
         /** 카메라 설정 */
         const cursors = this.input.keyboard.createCursorKeys();
 
-        const UICam = this.cameras.add(0, CONFIG.CONTAINER.TOP_MENU.HEIGHT, this.game.canvas.width, this.game.canvas.height - CONFIG.CONTAINER.TOP_MENU.HEIGHT);
+        const mapCam = this.cameras.add(0, CONFIG.CONTAINER.TOP_MENU.HEIGHT, this.game.canvas.width, this.game.canvas.height - CONFIG.CONTAINER.TOP_MENU.HEIGHT);
+
+        const textCam = this.cameras.add(0, 0, this.game.canvas.width, this.game.canvas.height);
 
         const controlConfig = {
-            camera: UICam,
+            camera: mapCam,
             left: cursors.right,
             right: cursors.left,
             up: cursors.down,
             down: cursors.up,
-            zoomIn: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q),
-            zoomOut: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E),
+            zoomIn: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E),
+            zoomOut: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q),
             acceleration: 0.06,
             drag: 0.0005,
             maxSpeed: 1.0,
@@ -52,9 +58,9 @@ export class MapScene extends Phaser.Scene
         };
 
         this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
-        this.cameras.main.ignore(mainMap);
-        UICam.ignore([topMenu, mapBackground]);
-        UICam.setBounds(-115, 200, 1300, 1500);
+        this.cameras.main.ignore([mainMap, exText]);
+        mapCam.ignore([topMenu, mapBackground, exText]).setBounds(-115, 200, 1300, 1500);
+        textCam.ignore([topMenu, mapBackground, mainMap]);
     }
 
     update (_time: number, delta: number) 
