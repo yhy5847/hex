@@ -18,7 +18,12 @@ export class MapScene extends Phaser.Scene
     {
         this.load.image(CONFIG.IMAGE.MAIN_MAP, "assets/images/mapScene/MainMap.png");
         this.load.image(CONFIG.IMAGE.MAP_BACKGROUND, "assets/images/mapScene/MapBackground.png");
-        this.load.image(CONFIG.IMAGE.EX_TEXT, "assets/images/mapScene/ExText.png")
+        this.load.image(CONFIG.IMAGE.EX_TEXT, "assets/images/mapScene/ExText.png");
+        this.load.image(CONFIG.IMAGE.START_NODE, "assets/images/mapScene/StartNode.png");
+        this.load.image(CONFIG.IMAGE.BATTLE_NODE, "assets/images/mapScene/BattleNode.png");
+        this.load.image(CONFIG.IMAGE.SHOP_NODE, "assets/images/mapScene/ShopNode.png");
+        this.load.image(CONFIG.IMAGE.BOSS_NODE, "assets/images/mapScene/BossNode.png");
+        this.load.image(CONFIG.IMAGE.MAP_PLAYER, "assets/images/mapScene/MapPlayer.png");
     }
 
     create(): void
@@ -34,6 +39,12 @@ export class MapScene extends Phaser.Scene
 
         /** 설명 텍스트 */
         const exText = this.add.image(100, this.game.canvas.height - 100, "ex_text").setDepth(2);
+
+        /** 노드 */
+        const startNode = this.add.image();
+        const battleNode = this.add.image();
+        const shopNode = this.add.image();
+        const bossNode = this.add.image();
 
         /** 카메라 설정 */
         const cursors = this.input.keyboard.createCursorKeys();
