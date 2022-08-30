@@ -46,7 +46,9 @@ export class MapScene extends Phaser.Scene
             zoomOut: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E),
             acceleration: 0.06,
             drag: 0.0005,
-            maxSpeed: 1.0
+            maxSpeed: 1.0,
+            minZoom: 1,
+            maxZoom: 2
         };
 
         this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
