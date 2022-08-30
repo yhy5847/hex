@@ -49,7 +49,6 @@ export class MapScene extends Phaser.Scene
             maxSpeed: 1.0
         };
 
-        //asdflkjasdf;lkj
         this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
         this.cameras.main.ignore(mainMap);
         UICam.ignore([topMenu, mapBackground]);
