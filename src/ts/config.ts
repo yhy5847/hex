@@ -22,15 +22,7 @@ export const CONFIG = {
         TITLE_COLOR: "title_color",
         COST_BOX: "cost_box",
         BATTLE_SCENE_BACKGROUND: "battle_scene_background",
-        REMAIN_CARDS: "remain_cards",
-        MAIN_MAP: "main_map",
-        MAP_BACKGROUND: "map_background",
-        EX_TEXT: "ex_text",
-        START_NODE: "start_node",
-        BATTLE_NODE: "battle_node",
-        SHOP_NODE: "shop_node",
-        BOSS_NODE: "boss_node",
-        MAP_PLAYER: "map_player"
+        REMAIN_CARDS: "remain_cards"
     },
     AUDIO: {
     },

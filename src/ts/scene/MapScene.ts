@@ -4,8 +4,39 @@ import TopMenu from "../interface/TopMenu";
 
 export class MapScene extends Phaser.Scene 
 {
+    static readonly KEY = {
+        SCENES: {
+            MAP: "MAP"
+        },
+        IMAGE : {
+            MAIN_MAP: "main_map",
+            MAP_BACKGROUND: "map_background",
+            EX_TEXT: "ex_text",
+            START_NODE: "start_node",
+            BATTLE_NODE: "battle_node",
+            SHOP_NODE: "shop_node",
+            BOSS_NODE: "boss_node",
+            MAP_PLAYER: "map_player"
+        }
+    }
 
     controls?: Phaser.Cameras.Controls.SmoothedKeyControl;
+
+    randomNode(nodes: string[]): string[][] {
+        let nodeArr: Array<string>[][] = new Array;
+
+        for(let i = 0; i < 5; ++i) {
+            for(let j = 0; j < 4; ++j) {
+                if(i) {
+                }else if(i == 0 || j == 0){
+                    nodeArr[i][j].push(nodes[0])
+                } else if(i == 4 || j == 0) {
+                    nodeArr[i][j].push(nodes[-1])
+                }
+            }
+        } 
+        return [[]];
+    }
 
     constructor() 
     {
@@ -41,10 +72,10 @@ export class MapScene extends Phaser.Scene
         const exText = this.add.image(100, this.game.canvas.height - 100, "ex_text").setDepth(2);
 
         /** 노드 */
-        const startNode = this.add.image();
-        const battleNode = this.add.image();
-        const shopNode = this.add.image();
-        const bossNode = this.add.image();
+        // const startNode = this.add.image();
+        // const battleNode = this.add.image();
+        // const shopNode = this.add.image();
+        // const bossNode = this.add.image();
 
         /** 카메라 설정 */
         const cursors = this.input.keyboard.createCursorKeys();
