@@ -5,9 +5,6 @@ import TopMenu from "../interface/TopMenu";
 export class MapScene extends Phaser.Scene 
 {
     static readonly KEY = {
-        SCENES: {
-            MAP: "MAP"
-        },
         IMAGE : {
             MAIN_MAP: "main_map",
             MAP_BACKGROUND: "map_background",
@@ -40,21 +37,19 @@ export class MapScene extends Phaser.Scene
 
     constructor() 
     {
-        super({
-            key: CONFIG.SCENES.MAP 
-        })
+        super(MapScene.name)
     }
 
     preload(): void 
     {
-        this.load.image(CONFIG.IMAGE.MAIN_MAP, "assets/images/mapScene/MainMap.png");
-        this.load.image(CONFIG.IMAGE.MAP_BACKGROUND, "assets/images/mapScene/MapBackground.png");
-        this.load.image(CONFIG.IMAGE.EX_TEXT, "assets/images/mapScene/ExText.png");
-        this.load.image(CONFIG.IMAGE.START_NODE, "assets/images/mapScene/StartNode.png");
-        this.load.image(CONFIG.IMAGE.BATTLE_NODE, "assets/images/mapScene/BattleNode.png");
-        this.load.image(CONFIG.IMAGE.SHOP_NODE, "assets/images/mapScene/ShopNode.png");
-        this.load.image(CONFIG.IMAGE.BOSS_NODE, "assets/images/mapScene/BossNode.png");
-        this.load.image(CONFIG.IMAGE.MAP_PLAYER, "assets/images/mapScene/MapPlayer.png");
+        this.load.image(MapScene.KEY.IMAGE.MAIN_MAP, "assets/images/mapScene/MainMap.png");
+        this.load.image(MapScene.KEY.IMAGE.MAP_BACKGROUND, "assets/images/mapScene/MapBackground.png");
+        this.load.image(MapScene.KEY.IMAGE.EX_TEXT, "assets/images/mapScene/ExText.png");
+        this.load.image(MapScene.KEY.IMAGE.START_NODE, "assets/images/mapScene/StartNode.png");
+        this.load.image(MapScene.KEY.IMAGE.BATTLE_NODE, "assets/images/mapScene/BattleNode.png");
+        this.load.image(MapScene.KEY.IMAGE.SHOP_NODE, "assets/images/mapScene/ShopNode.png");
+        this.load.image(MapScene.KEY.IMAGE.BOSS_NODE, "assets/images/mapScene/BossNode.png");
+        this.load.image(MapScene.KEY.IMAGE.MAP_PLAYER, "assets/images/mapScene/MapPlayer.png");
     }
 
     create(): void
