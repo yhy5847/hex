@@ -13,7 +13,6 @@ export default class MapObject extends Phaser.GameObjects.Container {
     /** 노드 배열 */
     private static _NODE_ARR: Array<Node>;
     static get NODE_ARR() {return MapObject._NODE_ARR;};
-    static set NODE_ARR(NODE_ARR) {MapObject._NODE_ARR = NODE_ARR;};
 
     /** 노드 층 설정(Start, Boss node 제외한 깊이(1부터 시작)) */
     private static readonly DEPTH = 7;
@@ -96,7 +95,7 @@ export default class MapObject extends Phaser.GameObjects.Container {
         const centerPoint = scene.game.canvas.width/2;
 
         //NODE_ARR 초기화
-        MapObject.NODE_ARR = [];
+        MapObject._NODE_ARR = [];
 
         //start 노드 푸쉬
         MapObject.NODE_ARR.push(scene.game.player!.currentNode = {
@@ -219,12 +218,10 @@ export default class MapObject extends Phaser.GameObjects.Container {
     /** 노드 이미지 배열 */
     private _nodeImageArr: Array<NodeImage>;
     get nodeImageArr() {return this._nodeImageArr}
-    // private set nodeImageArr(nodeImageArr: Array<NodeImage>) {this._nodeImageArr = nodeImageArr}
 
     /** 플레이어 이미지 */
     private _playerImage: Phaser.GameObjects.Image;
     get playerImage() {return this._playerImage}
-    // private set playerImage(playerImage: Phaser.GameObjects.Image) {this._playerImage = playerImage}
 }
 
 /** 노드 타입 */

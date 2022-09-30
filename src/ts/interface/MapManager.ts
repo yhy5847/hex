@@ -1,4 +1,5 @@
 import { Node, NodeImage, NodeType } from "../object/MapObject";
+import SettingWindow from "../object/SettingWindow";
 import BattleScene from "../scene/BattleScene";
 import ShopScene from "../scene/ShopScene";
 import { Scene } from "./Hex";
@@ -12,11 +13,7 @@ import { Scene } from "./Hex";
  */
 export default class MapManager {
 
-    readonly scene: Scene
-
-    constructor(scene: Scene) {
-        this.scene = scene;
-    }
+    constructor(public readonly scene: Scene) {}
 
     /** 플레이어 이동 */
     playerMove(nextNode: NodeImage, playerImage: Phaser.GameObjects.Image): void
@@ -78,14 +75,14 @@ export default class MapManager {
     }
 
     /** 맵 카메라 이동 */
-    mapCamMove(cam: Phaser.Cameras.Scene2D.Camera)
+    mapCamMove(cam: Phaser.Cameras.Scene2D.Camera): void
     {
         const controlConfig = {
             camera: cam,
-            up: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W),
-            down: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
-            zoomIn: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A),
-            zoomOut: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D),
+            up: this.scene.input.keyboard.addKey(SettingWindow.mapKey[0]),
+            down: this.scene.input.keyboard.addKey(SettingWindow.mapKey[1]),
+            zoomIn: this.scene.input.keyboard.addKey(SettingWindow.mapKey[2]),
+            zoomOut: this.scene.input.keyboard.addKey(SettingWindow.mapKey[3]),
             acceleration: 0.06,
             drag: 0.001,
             maxSpeed: 1.0,

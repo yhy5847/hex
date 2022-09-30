@@ -174,7 +174,7 @@ export enum ChampionName {
 /**
  * 챔피언 PK
  */
-enum ChampionPrimaryKey {
+export enum ChampionPrimaryKey {
     COMMON, SMUGGLER, PHANTOM, WARWOLF
 }
 

@@ -3,6 +3,7 @@ import MapObject, { NodeType } from "../object/MapObject";
 import TopMenu from "../object/TopMenu";
 import MapManager from "../interface/MapManager";
 import BattleScene from "./BattleScene";
+import SettingManager from "../interface/SettingManager";
 
 
 /**
@@ -21,7 +22,8 @@ export default class MapScene extends Scene
             MAP_BACKGROUND: "map_background",
             EX_TEXT: "ex_text",
             MAP_PLAYER: "map_player",
-            CLEAR_NODE: "clear_node"
+            CLEAR_NODE: "clear_node",
+            KEY_FULL_SCREEN: "key_full_screen"
         }
     }
 
@@ -52,6 +54,7 @@ export default class MapScene extends Scene
         this.load.image(NodeType.BOSS, "assets/images/mapScene/BossNode.png");
         this.load.image(MapScene.KEY.IMAGE.MAP_PLAYER, "assets/images/mapScene/MapPlayer.png");
         this.load.image(MapScene.KEY.IMAGE.CLEAR_NODE, "assets/images/mapScene/ClearNode.png");
+        this.load.image(MapScene.KEY.IMAGE.KEY_FULL_SCREEN, "assets/images/settingWindow/KeyFullScreen.png");
     }
 
     create(): void
@@ -80,8 +83,10 @@ export default class MapScene extends Scene
         mapCam.ignore([topMenu, mapBackground, exText]).setBounds(-115, 200, 1300, 1500);
         textCam.ignore([topMenu, mapBackground, mapObject]);
         
-        mapManager.camMoveToPlayer(this.game.player!.currentNode!);       
+        mapManager.camMoveToPlayer(this.game.player!.currentNode!);
 
+        const setting: SettingManager = new SettingManager(mapManager);
+        setting.setDownKey(mapCam);
     }
 
 

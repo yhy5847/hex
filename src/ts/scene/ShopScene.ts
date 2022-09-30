@@ -1,6 +1,6 @@
 import TopMenu from "../object/TopMenu";
 import Card from "../object/Card";
-import {CardData, CardEffect, ChampionPrimaryKey, defaultPlayer, Scene} from "../interface/Hex";
+import {CardData, BuffType, ChampionPrimaryKey, defaultPlayer, Scene} from "../interface/Hex";
 import LoadScene from "./LoadScene";
 import Shopproduct from "../interface/Shopproduct";
 import DodgeStartScene from "./DodgeStartScene";
@@ -23,7 +23,7 @@ export class ShopCard extends Card implements CardData {
     name : string;
     ownership: ChampionPrimaryKey;
     cost: number;
-    effect: CardEffect[];
+    effect: BuffType[];
     probability: number;
 
     // @ts-ignore
