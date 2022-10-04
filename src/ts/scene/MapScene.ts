@@ -3,8 +3,8 @@ import MapObject, { NodeType } from "../object/MapObject";
 import TopMenu from "../object/TopMenu";
 import MapManager from "../interface/MapManager";
 import BattleScene from "./BattleScene";
+import SettingWindow from "../object/SettingWindow";
 import SettingManager from "../interface/SettingManager";
-
 
 /**
  * 맵 씬
@@ -32,7 +32,6 @@ export default class MapScene extends Scene
         super(MapScene.KEY.NAME)
     }
 
-    
     preload(): void 
     {
         /** 전체화면 */
@@ -40,7 +39,7 @@ export default class MapScene extends Scene
 
         /** 치트키 */
         this.input.keyboard
-        .on('keydown-ONE',  () => this.scene.start(BattleScene.KEY.NAME))
+        .on('keydown-ONE', () => this.scene.start(BattleScene.KEY.NAME))
 
         /** 이미지 로드 */
         this.load.image(MapScene.KEY.IMAGE.MAIN_MAP, "assets/images/mapScene/MainMap.png");
@@ -63,7 +62,7 @@ export default class MapScene extends Scene
         const mapBackground = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2, "map_background").setScale(0.52).setDepth(0);
 
         /** 맵 오브젝트(지도, 노드, 엣지) */
-        const mapObject: MapObject = new MapObject(this)
+        const mapObject: MapObject = new MapObject(this);
         const mapManager = new MapManager(this);
         mapManager.setNodeInteraction(mapObject.nodeImageArr, mapObject.playerImage);
 
@@ -72,6 +71,10 @@ export default class MapScene extends Scene
 
         /** 설명 텍스트 */
         const exText = this.add.image(200, this.game.canvas.height - 100, "ex_text").setDepth(2);
+
+        /** 설정창 */
+        const settingWindow: SettingWindow = new SettingWindow(this);
+        const settingManager: SettingManager = new SettingManager(mapManager);
         
         /** 카메라 설정 */
         const mapCam = this.cameras.add(0, TopMenu.HEIGHT, this.game.canvas.width, this.game.canvas.height - TopMenu.HEIGHT, undefined, 'mapCam');
@@ -79,16 +82,14 @@ export default class MapScene extends Scene
            
         mapManager.mapCamMove(mapCam);
 
-        this.cameras.main.ignore([mapObject, exText]);
-        mapCam.ignore([topMenu, mapBackground, exText]).setBounds(-115, 200, 1300, 1500);
+        this.cameras.main.ignore([mapObject, exText, settingWindow]);
+        mapCam.ignore([topMenu, mapBackground, exText, settingWindow]).setBounds(-115, 200, 1300, 1500);
         textCam.ignore([topMenu, mapBackground, mapObject]);
         
         mapManager.camMoveToPlayer(this.game.player!.currentNode!);
 
-        const setting: SettingManager = new SettingManager(mapManager);
-        setting.setDownKey(mapCam);
+        settingManager.setMapKeyInteraction(settingWindow, mapCam);
     }
-
 
     update (_time: number, delta: number): void 
     {

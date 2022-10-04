@@ -4,6 +4,7 @@ import BattleScene from "./BattleScene";
 import CharacterScene from "./CharacterScene";
 import MapScene from "./MapScene";
 import DodgeStartScene from "./DodgeStartScene";
+import SettingWindow from "../object/SettingWindow";
 
 /**
  * Hex 게임의 로딩씬 입니다.
@@ -45,6 +46,17 @@ export default class LoadScene extends Scene
 
     preload(): void 
     {
+        this.load.image(SettingWindow.KEY.IMAGE.CONTINUE_BUTTON, "assets/images/settingWindow/ContinueButton.png");
+        this.load.image(SettingWindow.KEY.IMAGE.CONTROLLER, "assets/images/settingWindow/Controller.png");
+        this.load.image(SettingWindow.KEY.IMAGE.KEY_FULL_SCREEN, "assets/images/settingWindow/KeyFullScreen.png");
+        this.load.image(SettingWindow.KEY.IMAGE.KEY_MAP_SCROLL_DOWN, "assets/images/settingWindow/KeyMapScrollDown.png");
+        this.load.image(SettingWindow.KEY.IMAGE.KEY_MAP_SCROLL_UP, "assets/images/settingWindow/KeyMapScrollUp.png");
+        this.load.image(SettingWindow.KEY.IMAGE.KEY_MAP_ZOOM_IN, "assets/images/settingWindow/KeyMapZoomIn.png");
+        this.load.image(SettingWindow.KEY.IMAGE.KEY_MAP_ZOOM_OUT, "assets/images/settingWindow/KeyMapZoomOut.png");
+        this.load.image(SettingWindow.KEY.IMAGE.MENU, "assets/images/settingWindow/Menu.png");
+        this.load.image(SettingWindow.KEY.IMAGE.QUIT_THE_GAME_BUTTON, "assets/images/settingWindow/QuitTheGameButton.png");
+        this.load.image(SettingWindow.KEY.IMAGE.RETURN_TO_LOGIN_BUTTON, "assets/images/settingWindow/ReturnToLoginButton.png");
+
         this.load.atlas(LoadScene.KEY.ATLAS.TOP, "assets/atlas/top.png", "assets/atlas/top.json");
         this.load.atlas(LoadScene.KEY.ATLAS.CARD_BASE, "assets/atlas/card_base.png", "assets/atlas/card_base.json");
         this.load.atlas(LoadScene.KEY.ATLAS.CARD_IMAGE, "assets/atlas/card_image.png", "assets/atlas/card_image.json");
